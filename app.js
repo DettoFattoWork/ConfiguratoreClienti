@@ -1,33 +1,5 @@
 const STORAGE_KEY = 'customer-data-storage';
 const CLIENTS_KEY = 'saved-clients';
-const AUTH_KEY = 'dettofatto-auth';
-
-function checkAuth() {
-  return localStorage.getItem(AUTH_KEY) === 'authenticated';
-}
-
-function doLogin(username, password) {
-  if (username === 'admin' && password === '1212') {
-    localStorage.setItem(AUTH_KEY, 'authenticated');
-    return true;
-  }
-  return false;
-}
-
-function doLogout() {
-  localStorage.removeItem(AUTH_KEY);
-  location.reload();
-}
-
-function showApp() {
-  document.getElementById('login-screen').classList.add('hidden');
-  document.getElementById('app').classList.remove('app-hidden');
-}
-
-function showLogin() {
-  document.getElementById('login-screen').classList.remove('hidden');
-  document.getElementById('app').classList.add('app-hidden');
-}
 
 let state = {
   company: { name: '', address: '', vatNumber: '', email: '', phone: '' },
@@ -128,8 +100,10 @@ function renderWorkDatabase() {
 
   cards.innerHTML = state.workItems.map((item, idx) => `
     <div class="mobile-card" data-id="${item.id}">
-      <button class="btn btn-danger mobile-card-delete delete-work-btn">&times;</button>
-      <div class="mobile-card-number">Riga ${idx + 1}</div>
+      <div class="mobile-card-header">
+        <span style="font-size:0.75rem;color:var(--text-muted)">Riga ${idx + 1}</span>
+        <button class="btn btn-danger delete-work-btn">&times;</button>
+      </div>
       <div class="form-group">
         <label>Categoria</label>
         <input type="text" value="${item.category || ''}" data-field="category" placeholder="Categoria">
@@ -415,37 +389,8 @@ function resetState() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  if (checkAuth()) {
-    showApp();
-    loadState();
-    renderAll();
-  } else {
-    showLogin();
-  }
-
-  document.getElementById('btn-login').addEventListener('click', function() {
-    const username = document.getElementById('login-username').value.trim();
-    const password = document.getElementById('login-password').value;
-    const errorEl = document.getElementById('login-error');
-    
-    if (doLogin(username, password)) {
-      errorEl.textContent = '';
-      showApp();
-      loadState();
-      renderAll();
-    } else {
-      errorEl.textContent = 'Credenziali non valide';
-    }
-  });
-
-  document.getElementById('login-password').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      document.getElementById('btn-login').click();
-    }
-  });
-
-  document.getElementById('btn-logout').addEventListener('click', doLogout);
-  document.getElementById('btn-logout-mobile').addEventListener('click', doLogout);
+  loadState();
+  renderAll();
 
   document.querySelectorAll('.nav-item').forEach(btn => {
     btn.addEventListener('click', () => switchSection(btn.dataset.section));

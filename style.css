@@ -4,81 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Login Screen */
-.login-screen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: var(--bg);
-  padding: 1rem;
-}
-
-.login-screen.hidden {
-  display: none;
-}
-
-.login-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 2rem;
-  width: 100%;
-  max-width: 360px;
-}
-
-.login-title {
-  color: var(--primary);
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 0.25rem;
-}
-
-.login-subtitle {
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.login-card .form-group {
-  margin-bottom: 1rem;
-}
-
-.login-error {
-  color: var(--destructive);
-  font-size: 0.875rem;
-  text-align: center;
-  margin-bottom: 1rem;
-  min-height: 1.25rem;
-}
-
-.app-hidden {
-  display: none !important;
-}
-
-/* Logout buttons */
-.btn-logout {
-  color: var(--destructive);
-  border-color: var(--destructive);
-}
-
-.btn-logout:hover {
-  background: rgba(239, 68, 68, 0.1);
-}
-
-.btn-logout-mobile {
-  background: none;
-  border: none;
-  color: var(--destructive);
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 0.5rem;
-  margin-left: auto;
-}
-
 :root {
   --primary: #3ea782;
   --primary-hover: #359471;
@@ -233,16 +158,6 @@ body {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-}
-
-.header-actions-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.header-actions-vertical .btn {
-  width: 100%;
 }
 
 /* Cards */
@@ -406,58 +321,27 @@ textarea {
 .mobile-cards {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .mobile-card {
   background: var(--bg);
-  border: 1px solid var(--border);
   border-radius: 0.5rem;
   padding: 1rem;
-  position: relative;
 }
 
-.mobile-card .form-group {
-  margin-bottom: 0.75rem;
-}
-
-.mobile-card .form-group:last-child {
-  margin-bottom: 0;
-}
-
-.mobile-card-delete {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  width: 36px;
-  height: 36px;
+.mobile-card-header {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(239, 68, 68, 0.1);
-  border-radius: 0.375rem;
-  z-index: 1;
-}
-
-.mobile-card-delete:hover {
-  background: rgba(239, 68, 68, 0.2);
-}
-
-.mobile-card-number {
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 0.75rem;
-  padding-right: 2.5rem;
 }
 
 .mobile-card-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
-}
-
-.mobile-card-row .form-group {
-  margin-bottom: 0;
+  margin-top: 0.75rem;
 }
 
 .mobile-card label {
@@ -465,12 +349,6 @@ textarea {
   color: var(--text-muted);
   display: block;
   margin-bottom: 0.25rem;
-}
-
-@media (max-width: 320px) {
-  .mobile-card-row {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Tabs */
@@ -534,12 +412,8 @@ textarea {
 /* Empty State */
 .empty-state {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
   color: var(--text-muted);
-}
-
-.empty-state p {
-  margin: 0;
 }
 
 /* Modal */
@@ -658,14 +532,6 @@ textarea {
 
   .header-actions {
     flex-direction: column;
-  }
-
-  .header-actions .btn {
-    width: 100%;
-  }
-
-  .card {
-    padding: 1rem;
   }
 
   .desktop-only {
