@@ -7,7 +7,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">
+  <!-- Login Screen -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-card">
+      <h1 class="login-title">DettoFatto</h1>
+      <p class="login-subtitle">Accedi per continuare</p>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="login-username" placeholder="Username" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="Password" autocomplete="current-password">
+      </div>
+      <div id="login-error" class="login-error"></div>
+      <button id="btn-login" class="btn btn-primary full-width">Accedi</button>
+    </div>
+  </div>
+
+  <div id="app" class="app-hidden">
     <aside id="sidebar" class="sidebar">
       <div class="sidebar-header">
         <h1 class="brand-title">DettoFatto</h1>
@@ -25,12 +43,14 @@
         <button id="btn-new-client" class="btn btn-outline full-width">Nuovo Cliente</button>
         <button id="btn-save-client" class="btn btn-primary full-width">Salva Cliente</button>
         <button id="btn-load-clients" class="btn btn-outline full-width">Clienti Salvati</button>
+        <button id="btn-logout" class="btn btn-outline full-width btn-logout">Logout</button>
       </div>
     </aside>
 
     <div class="mobile-header">
       <button id="mobile-menu-btn" class="hamburger-btn">☰</button>
       <h1 class="mobile-title">DettoFatto</h1>
+      <button id="btn-logout-mobile" class="btn-logout-mobile">Esci</button>
     </div>
 
     <main id="main-content" class="main-content">
