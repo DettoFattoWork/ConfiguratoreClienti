@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DettoFatto – Configurazione Cliente</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <h1 class="brand-title">DettoFatto</h1>
+        <p class="brand-subtitle">Configurazione Cliente</p>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-section="company">Dati Azienda</button>
+        <button class="nav-item" data-section="access">Dati Accesso</button>
+        <button class="nav-item" data-section="activity">Attività</button>
+        <button class="nav-item" data-section="workdb">Database Lavorazioni</button>
+        <button class="nav-item" data-section="quotes">Preventivi Rapidi</button>
+        <button class="nav-item" data-section="summary">Riepilogo</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="btn-new-client" class="btn btn-outline full-width">Nuovo Cliente</button>
+        <button id="btn-save-client" class="btn btn-primary full-width">Salva Cliente</button>
+        <button id="btn-load-clients" class="btn btn-outline full-width">Clienti Salvati</button>
+      </div>
+    </aside>
+
+    <div class="mobile-header">
+      <button id="mobile-menu-btn" class="hamburger-btn">☰</button>
+      <h1 class="mobile-title">DettoFatto</h1>
+    </div>
+
+    <main id="main-content" class="main-content">
+      <!-- Company Section -->
+      <section id="section-company" class="section active">
+        <div class="page-header">
+          <h2>Dati Azienda</h2>
+          <p class="description">Inserisci i dati anagrafici del cliente.</p>
+          <button id="btn-clear-company" class="btn btn-outline">Svuota Sezione</button>
+        </div>
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Ragione Sociale</label>
+              <input type="text" id="company-name" placeholder="Nome azienda">
+            </div>
+            <div class="form-group full-width">
+              <label>Indirizzo</label>
+              <input type="text" id="company-address" placeholder="Via, numero, città">
+            </div>
+            <div class="form-group">
+              <label>Partita IVA / C.F.</label>
+              <input type="text" id="company-vat" placeholder="P.IVA o Codice Fiscale">
+            </div>
+            <div class="form-group">
+              <label>Telefono</label>
+              <input type="text" id="company-phone" placeholder="Numero telefono">
+            </div>
+            <div class="form-group full-width">
+              <label>Email</label>
+              <input type="email" id="company-email" placeholder="email@esempio.it">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Access Section -->
+      <section id="section-access" class="section">
+        <div class="page-header">
+          <h2>Dati Accesso</h2>
+          <p class="description">Credenziali di accesso per il cliente.</p>
+          <button id="btn-clear-access" class="btn btn-outline">Svuota Sezione</button>
+        </div>
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" id="access-username" placeholder="Nome utente">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="text" id="access-password" placeholder="Password">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Activity Section -->
+      <section id="section-activity" class="section">
+        <div class="page-header">
+          <h2>Attività</h2>
+          <p class="description">Tipologia e note sull'attività del cliente.</p>
+          <button id="btn-clear-activity" class="btn btn-outline">Svuota Sezione</button>
+        </div>
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Tipologia Attività</label>
+              <input type="text" id="activity-type" placeholder="es. Ristorante, Negozio, Studio...">
+            </div>
+            <div class="form-group full-width">
+              <label>Note Attività</label>
+              <textarea id="activity-notes" rows="4" placeholder="Note aggiuntive sull'attività..."></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Work Database Section -->
+      <section id="section-workdb" class="section">
+        <div class="page-header">
+          <h2>Database Lavorazioni</h2>
+          <p class="description">Tabella delle lavorazioni disponibili.</p>
+          <div class="header-actions">
+            <button id="btn-clear-workdb" class="btn btn-outline">Svuota Database</button>
+            <button id="btn-add-work" class="btn btn-primary">+ Aggiungi Riga</button>
+          </div>
+        </div>
+        <div class="card">
+          <table class="data-table desktop-only">
+            <thead>
+              <tr>
+                <th>Categoria</th>
+                <th>Sottocategoria</th>
+                <th>Descrizione</th>
+                <th>Unità</th>
+                <th>Prezzo</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="work-table-body"></tbody>
+          </table>
+          <div id="work-cards" class="mobile-cards mobile-only"></div>
+          <div id="work-empty" class="empty-state">
+            <p>Nessuna lavorazione. Clicca "Aggiungi Riga" per iniziare.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quotes Section -->
+      <section id="section-quotes" class="section">
+        <div class="page-header">
+          <h2>Preventivi Rapidi</h2>
+          <p class="description">Crea fino a 4 preventivi selezionando voci dal database.</p>
+          <button id="btn-clear-quote" class="btn btn-outline">Svuota Preventivo</button>
+        </div>
+        <div class="tabs">
+          <button class="tab active" data-quote="0">P1</button>
+          <button class="tab" data-quote="1">P2</button>
+          <button class="tab" data-quote="2">P3</button>
+          <button class="tab" data-quote="3">P4</button>
+        </div>
+        <div class="card">
+          <div class="form-group">
+            <label>Nome Preventivo</label>
+            <input type="text" id="quote-name" placeholder="es. Sito Web Base...">
+          </div>
+          <div class="form-group">
+            <label>Aggiungi Voce</label>
+            <select id="quote-add-item">
+              <option value="">Seleziona una voce...</option>
+            </select>
+          </div>
+          <table class="data-table desktop-only">
+            <thead>
+              <tr>
+                <th>Descrizione</th>
+                <th>Unità</th>
+                <th>Prezzo</th>
+                <th>Qtà</th>
+                <th>Totale</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="quote-table-body"></tbody>
+          </table>
+          <div id="quote-cards" class="mobile-cards mobile-only"></div>
+          <div id="quote-empty" class="empty-state">
+            <p>Nessuna voce in questo preventivo.</p>
+          </div>
+          <div class="quote-total">
+            <span>Totale:</span>
+            <strong id="quote-total-value">0,00</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary Section -->
+      <section id="section-summary" class="section">
+        <div class="page-header">
+          <h2>Riepilogo Finale</h2>
+          <p class="description">File di testo strutturato con tutti i dati del cliente.</p>
+        </div>
+        <div class="card">
+          <div class="form-group">
+            <label>Note Finali</label>
+            <textarea id="final-notes" rows="3" placeholder="Inserisci note finali..."></textarea>
+          </div>
+        </div>
+        <div class="card output-card">
+          <h3>Output Configurazione Cliente</h3>
+          <textarea id="output-text" readonly class="output-textarea"></textarea>
+        </div>
+        <button id="btn-copy" class="btn btn-primary full-width">Copia Tutto</button>
+      </section>
+    </main>
+
+    <!-- Saved Clients Modal -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Clienti Salvati</h3>
+          <button id="modal-close" class="modal-close">&times;</button>
+        </div>
+        <div id="saved-clients-list" class="saved-clients-list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
