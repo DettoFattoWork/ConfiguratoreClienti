@@ -1,5 +1,31 @@
 const STORAGE_KEY = 'customer-data-storage';
 const CLIENTS_KEY = 'saved-clients';
+const LOGIN_KEY = 'dettofatto-logged-in';
+
+const VALID_USERNAME = 'admin';
+const VALID_PASSWORD = '1212';
+
+function checkLogin() {
+  return localStorage.getItem(LOGIN_KEY) === 'true';
+}
+
+function performLogin(username, password) {
+  if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+    localStorage.setItem(LOGIN_KEY, 'true');
+    return true;
+  }
+  return false;
+}
+
+function performLogout() {
+  localStorage.removeItem(LOGIN_KEY);
+  location.reload();
+}
+
+function showApp() {
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+}
 
 let state = {
   company: { name: '', address: '', vatNumber: '', email: '', phone: '' },
@@ -389,8 +415,34 @@ function resetState() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  loadState();
-  renderAll();
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+    const errorEl = document.getElementById('login-error');
+
+    if (performLogin(username, password)) {
+      errorEl.textContent = '';
+      showApp();
+      loadState();
+      renderAll();
+      initAppEventListeners();
+    } else {
+      errorEl.textContent = 'Username o password non corretti';
+    }
+  });
+
+  document.getElementById('btn-logout').addEventListener('click', performLogout);
+
+  if (checkLogin()) {
+    showApp();
+    loadState();
+    renderAll();
+    initAppEventListeners();
+  }
+});
+
+function initAppEventListeners() {
 
   document.querySelectorAll('.nav-item').forEach(btn => {
     btn.addEventListener('click', () => switchSection(btn.dataset.section));
@@ -622,4 +674,4 @@ document.addEventListener('DOMContentLoaded', function() {
       alert('Copiato!');
     });
   });
-});
+}

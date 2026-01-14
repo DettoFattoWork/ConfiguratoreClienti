@@ -7,7 +7,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">
+  <div id="login-screen" class="login-screen">
+    <div class="login-box">
+      <h1 class="login-title">DettoFatto</h1>
+      <p class="login-subtitle">Accedi per continuare</p>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" placeholder="Inserisci username" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Inserisci password" autocomplete="current-password">
+        </div>
+        <p id="login-error" class="login-error"></p>
+        <button type="submit" class="btn btn-primary full-width">Accedi</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
     <aside id="sidebar" class="sidebar">
       <div class="sidebar-header">
         <h1 class="brand-title">DettoFatto</h1>
@@ -25,6 +44,7 @@
         <button id="btn-new-client" class="btn btn-outline full-width">Nuovo Cliente</button>
         <button id="btn-save-client" class="btn btn-primary full-width">Salva Cliente</button>
         <button id="btn-load-clients" class="btn btn-outline full-width">Clienti Salvati</button>
+        <button id="btn-logout" class="btn btn-outline full-width">Logout</button>
       </div>
     </aside>
 
